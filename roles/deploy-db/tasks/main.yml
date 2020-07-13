@@ -25,7 +25,7 @@
 - name: Check if PostgreSQL database is initialized.
   stat:
     path: "{{ pgs_data_dir }}/PG_VERSION"
-  register: lspgdata_dir_version
+  register: pgdata_dir_version
 
 - name: Debug pgdata_dir_version
   debug:
