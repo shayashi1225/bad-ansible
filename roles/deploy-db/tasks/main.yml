@@ -16,25 +16,26 @@
     msg: "Either uncomment the postgres setup or manually login and initialize"
 
 # only run the next 2 tasks once!
-- name: initilize postgres
-  command: "postgresql-setup initdb"
-
+#- name: initilize postgres
+#  command: "postgresql-setup initdb"
+#
 #- name: initilize postgres some more
 #    command: chkconfig postgresql on
 
-#- name: Check if PostgreSQL database is initialized.
-#  stat:
-#    path: "{{ postgresql_data_dir }}/PG_VERSION"
-#  register: pgdata_dir_version
+- name: Check if PostgreSQL database is initialized.
+  stat:
+    path: "{{ pgs_data_dir }}/PG_VERSION"
+  register: pgdata_dir_version
 
-#- name: Ensure PostgreSQL database is initialized.
-#  command: "{{ postgresql_bin_path }}/initdb -D {{ postgresql_data_dir }}"
-#  when: not pgdata_dir_version.stat.exists
-#  become: yes
-#  become_user: "{{ postgresql_user }}"
-#  # See: https://github.com/ansible/ansible/issues/16048#issuecomment-229012509
-#  vars:
-#    ansible_ssh_pipelining: true
+- name: Debug pgdata_dir_version
+  msg: pgdata_dir_version
+
+- name: Ensure PostgreSQL database is initialized.
+  command: "postgresql-setup/initdb"
+  when: not pgdata_dir_version.stat.exists
+  become: yes
+  become_user: "{{ postgresql_user }}"
+  # See: https://github.com/ansible/ansible/issues/16048#issuecomment-229012509
 
 - name: start postgres
   service:
