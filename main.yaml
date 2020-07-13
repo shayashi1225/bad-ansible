@@ -1,0 +1,26 @@
+---
+
+
+- name: setup frontend
+  hosts: frontends
+  become: yes
+  gather_facts: false
+  roles:
+    - common-config
+    - deploy-frontend
+
+- name: setup app
+  hosts: apps
+  become: yes
+  gather_facts: false
+  roles:
+    - common-config
+    - deploy-app
+
+- name: setup database
+  hosts: appdbs
+  become: yes
+  gather_facts: false
+  roles:
+    - common-config
+    - deploy-db

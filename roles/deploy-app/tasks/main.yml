@@ -1,0 +1,30 @@
+---
+# tasks file for deploy-app
+
+- name: install tomcat
+  package:
+    name: tomcat
+    state: latest
+
+- name: enable tomcat at boot
+  service:
+    name: tomcat
+    enabled: yes
+
+- name: create ansible tomcat directory
+  file:
+    path: "{{ tomcat_app_dir }}"
+    state: directory
+
+- name: copy static index.html to {{tomcat_app_dir}}/index.html
+  template:
+    src: index.html.j2
+    dest: "{{ tomcat_app_dir }}/index.html"
+    mode: 0644
+
+- name: restart tomcat
+  service:
+    name: tomcat
+    state: restarted
+
+ 
