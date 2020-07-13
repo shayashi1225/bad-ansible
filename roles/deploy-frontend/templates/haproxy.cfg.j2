@@ -17,7 +17,7 @@ defaults
         timeout server 50000
 
 frontend hafrontend
-    bind *:80
+    bind *:{{ haproxy_port }}
     mode http
     default_backend app-servers
 
