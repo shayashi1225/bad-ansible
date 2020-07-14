@@ -1,10 +1,10 @@
 
 [frontends]
-frontend1 ansible_ssh_host=frontend1.64ec.example.opentlc.com
+frontend1 ansible_ssh_host=frontend1.{{GUID}}.example.opentlc.com
 
 [apps]
-app1 ansible_ssh_host=app1.64ec.example.opentlc.com
-app2 ansible_ssh_host=app2.64ec.example.opentlc.com
+app1 ansible_ssh_host=app1.{{GUID}}.example.opentlc.com
+app2 ansible_ssh_host=app2.{{GUID}}.example.opentlc.com
 
 [appdbs]
-appdb1 ansible_ssh_host=appdb1.64ec.example.opentlc.com
+appdb1 ansible_ssh_host=appdb1.{{GUID}}.example.opentlc.com
