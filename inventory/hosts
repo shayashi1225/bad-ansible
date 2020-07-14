@@ -1,3 +1,4 @@
+[all:vars]
 GUID=64ec
 
 [frontends]
